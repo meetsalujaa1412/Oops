@@ -1,0 +1,6 @@
+print("Press 1 for creating an account: ")
+print("Press 2 for deposit money in the bank: ")
+print("Press 3 for withdrawing money from the bank: ")
+print("Press 4 for details: ")
+print("Press 5 for updating details: ")
+print("Press 6 for deleting account: ")
