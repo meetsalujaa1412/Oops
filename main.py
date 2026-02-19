@@ -81,6 +81,11 @@ class Bank:
             amount = int(input('How much you want to wtihdraw: '))
             if userdata[0]['balance'] < amount:
                 print('You do not have enough balance')
+            else:
+                userdata[0]['balance'] -= amount
+                Bank.__update()
+                print('Money withdrawn successfully')
+                print(f'Updated Balance {userdata[0]["balance"]}')
             
 
 user = Bank()
