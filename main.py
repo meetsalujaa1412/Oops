@@ -86,7 +86,53 @@ class Bank:
                 Bank.__update()
                 print('Money withdrawn successfully')
                 print(f'Updated Balance {userdata[0]["balance"]}')
-            
+
+    def showdetails(self):
+        account_number = input('Enter your account number: ')
+        pin = int(input('Enter your pin: '))
+        
+        userdata = [i for i in Bank.data if i['account_number'] == account_number and i['pin'] == pin]
+        for i in userdata[0]:
+            print(f'{i.capitalize()} : {userdata[0][i]}')
+    
+    def updatedetails(self):
+        account_number = input('Enter your account number: ')
+        pin = int(input('Enter your pin: '))
+        
+        userdata = [i for i in Bank.data if i['account_number'] == account_number and i['pin'] == pin]
+        
+        if userdata == False:
+            print('Invalid account number or pin')
+        else:
+            question = input('What do you want to update? (email, pin): ')
+
+            if question.lower() == 'email':
+                new_email = input("Enter your new email: ").lower()
+                userdata[0]['email'] = new_email
+                Bank.__update()
+                print('Email updated successfully')
+            elif question.lower() == 'pin':
+                new_pin = int(input("Enter your new pin: "))
+                if len(str(new_pin)) != 4:
+                    print('Pin must be 4 digits')
+                else:
+                    userdata[0]['pin'] = new_pin
+                    Bank.__update()
+                    print('Pin updated successfully')
+            elif question.lower() == 'both':
+                new_email = input("Enter your new email: ").lower()
+                new_pin = int(input("Enter your new pin: "))
+                if len(str(new_pin)) != 4:
+                    print('Pin must be 4 digits')
+                else:
+                    userdata[0]['email'] = new_email
+                    userdata[0]['pin'] = new_pin
+                    Bank.__update()
+                    print('Details updated successfully')
+            else:
+                print('Invalid input')
+
+          
 
 user = Bank()
 
@@ -108,3 +154,9 @@ if check == 2:
 
 if check ==3:
     user.withdrawmoney()
+
+if check ==4:
+    user.showdetails()
+
+if check ==5:
+    user.updatedetails()
